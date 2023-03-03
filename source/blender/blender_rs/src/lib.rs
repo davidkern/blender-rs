@@ -1,16 +1,11 @@
-#[cxx::bridge]
-mod ffi {
-    extern "Rust" {
-        fn rs_cxx_init();
-    }
-}
+#![allow(non_upper_case_globals)]
+#![allow(non_camel_case_types)]
+#![allow(non_snake_case)]
 
-pub fn rs_cxx_init() {
-    println!("rs_cxx_init executed.")
-}
+include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
 
 #[no_mangle]
-pub extern "C" fn rs_c_init() {
-    println!("rs_c_init executed.");
-    rs_cxx_init();
+pub extern "C" fn RUST_init(context: *mut bContext) {
+    println!("RUST_init executed; quiting...");
+    unsafe { WM_exit(context); }
 }

@@ -296,11 +296,10 @@ int main(int argc,
 
   /* --- end declarations --- */
 
-  rs_c_init();
-
   /* Ensure we free data on early-exit. */
   struct CreatorAtExitData app_init_data = {NULL};
   BKE_blender_atexit_register(callback_main_atexit, &app_init_data);
+  // dlk: also register rust world for atexit cleanup
 
   /* Un-buffered `stdout` makes `stdout` and `stderr` better synchronized, and helps
    * when stepping through code in a debugger (prints are immediately
@@ -574,6 +573,8 @@ int main(int argc,
   argv = NULL;
   (void)argv;
 #endif
+
+RUST_init(C);
 
 #ifndef WITH_PYTHON_MODULE
   if (G.background) {

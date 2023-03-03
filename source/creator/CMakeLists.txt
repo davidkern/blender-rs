@@ -21,7 +21,7 @@ set(INC
 
 set(LIB
   bf_windowmanager
-  blender_rs_bridge
+  blender_rs
 )
 
 if(HAVE_FEENABLEEXCEPT)
