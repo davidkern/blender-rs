@@ -16,10 +16,12 @@ set(INC
   ../blender/makesrna
   ../blender/render
   ../blender/windowmanager
+  ../blender/blender_rs
 )
 
 set(LIB
   bf_windowmanager
+  blender_rs
 )
 
 if(HAVE_FEENABLEEXCEPT)
